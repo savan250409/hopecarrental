@@ -53,7 +53,7 @@ export default function Contact() {
               {details.map((d, i) => {
                 const inner = (
                   <div className="group flex h-full items-start gap-4 rounded-2xl border border-navy-100 bg-navy-50/60 p-5 transition-all hover:-translate-y-1 hover:border-gold-200 hover:bg-white hover:shadow-card dark:border-white/10 dark:bg-navy-900 dark:hover:border-gold-400/30 dark:hover:bg-navy-900">
-                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-navy-900 text-gold-300 transition-colors group-hover:bg-gold-400 group-hover:text-navy-950 dark:bg-white/10">
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gold-100 text-gold-700 ring-1 ring-gold-200/70 transition-colors group-hover:bg-gold-400 group-hover:text-navy-950 dark:bg-white/10 dark:text-gold-300 dark:ring-0">
                       <Icon name={d.icon} className="h-5 w-5" />
                     </span>
                     <div>

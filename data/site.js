@@ -85,7 +85,7 @@ export const perks = [
 
 // ---------------------------------------------------------------------------
 // Fleet — every category, price and model preserved from the reference site hopecarrental.mu.
-// Real vehicle photos downloaded from hopecarrental.mu into /images/cars/
+// Transparent vehicle cutouts live in /images/cars/cutouts/; original photos stay in /images/cars/.
 // ---------------------------------------------------------------------------
 export const categories = [
   {
@@ -95,7 +95,7 @@ export const categories = [
     from: 35,
     body: "hatch",
     accent: "#35c4c2",
-    image: "/images/cars/nissan-micra.jpg",
+    image: "/images/cars/cutouts/nissan-micra.png",
     seats: 4,
     bags: 2,
     blurb:
@@ -109,7 +109,7 @@ export const categories = [
     from: 38,
     body: "hatch",
     accent: "#1aa8a7",
-    image: "/images/cars/toyota-vitz.jpg",
+    image: "/images/cars/cutouts/toyota-vitz.png",
     seats: 5,
     bags: 2,
     blurb:
@@ -130,7 +130,7 @@ export const categories = [
     from: 49,
     body: "sedan",
     accent: "#345a9e",
-    image: "/images/cars/hyundai-accent.png",
+    image: "/images/cars/cutouts/hyundai-accent.png",
     seats: 5,
     bags: 3,
     blurb:
@@ -144,7 +144,7 @@ export const categories = [
     from: 65,
     body: "van",
     accent: "#e9a62f",
-    image: "/images/cars/suzuki-ertiga.jpg",
+    image: "/images/cars/cutouts/suzuki-ertiga.png",
     seats: 7,
     bags: 4,
     blurb:
@@ -184,7 +184,7 @@ export const categories = [
     from: 115,
     body: "van",
     accent: "#bf6915",
-    image: "/images/cars/toyota-noah.jpg",
+    image: "/images/cars/cutouts/toyota-noah.png",
     seats: 7,
     bags: 5,
     blurb:
@@ -198,7 +198,7 @@ export const categories = [
     from: 245,
     body: "luxury",
     accent: "#152747",
-    image: "/images/cars/mercedes-cla-200.jpg",
+    image: "/images/cars/cutouts/mercedes-cla-200.png",
     seats: 5,
     bags: 3,
     blurb:
@@ -212,7 +212,7 @@ export const categories = [
     from: 120,
     body: "pickup",
     accent: "#9e4b15",
-    image: "/images/cars/toyota-hilux.jpg",
+    image: "/images/cars/cutouts/toyota-hilux.png",
     seats: 5,
     bags: 4,
     blurb:
@@ -226,7 +226,7 @@ export const categories = [
     from: 1300,
     body: "luxury-suv",
     accent: "#0d1b33",
-    image: "/images/cars/bmw-serie-3.jpg",
+    image: "/images/cars/cutouts/bmw-serie-3.png",
     seats: 5,
     bags: 4,
     blurb:
@@ -235,68 +235,68 @@ export const categories = [
   },
 ];
 
-// Mapping of specific car models to their official hopecarrental.mu asset images
+// Mapping of specific car models to transparent PNG cutouts.
 export const carImages = {
   // Economy
-  "Nissan Micra": "/images/cars/nissan-micra.jpg",
-  "Suzuki Alto": "/images/cars/suzuki-alto.jpg",
-  "Kia Picanto": "/images/cars/kia-picanto.jpg",
-  "Hyundai i10": "/images/cars/hyundai-i10.jpg",
+  "Nissan Micra": "/images/cars/cutouts/nissan-micra.png",
+  "Suzuki Alto": "/images/cars/cutouts/suzuki-alto.png",
+  "Kia Picanto": "/images/cars/cutouts/kia-picanto.png",
+  "Hyundai i10": "/images/cars/cutouts/hyundai-i10.png",
 
   // Compact
-  "Toyota Vitz": "/images/cars/toyota-vitz.jpg",
-  "Nissan Note": "/images/cars/nissan-note.jpg",
-  "Honda Fit": "/images/cars/honda-fit.jpg",
-  "Hyundai Grand i10": "/images/cars/hyundai-grand-i10.jpg",
-  "Kia Rio": "/images/cars/kia-rio.jpg",
-  "Hyundai i20": "/images/cars/hyundai-i20.jpg",
+  "Toyota Vitz": "/images/cars/cutouts/toyota-vitz.png",
+  "Nissan Note": "/images/cars/cutouts/nissan-note.png",
+  "Honda Fit": "/images/cars/cutouts/honda-fit.png",
+  "Hyundai Grand i10": "/images/cars/cutouts/hyundai-grand-i10.png",
+  "Kia Rio": "/images/cars/cutouts/kia-rio.png",
+  "Hyundai i20": "/images/cars/cutouts/hyundai-i20.png",
 
   // Sedan
-  "Hyundai Accent": "/images/cars/hyundai-accent.png",
-  "Suzuki Dezire": "/images/cars/suzuki-dzire.jpg",
-  "Suzuki Dzire": "/images/cars/suzuki-dzire.jpg",
-  "Kia Rio Sedan": "/images/cars/kia-rio-sedan.png",
-  "Perodua Bezza": "/images/cars/perodua-bezza.jpg",
+  "Hyundai Accent": "/images/cars/cutouts/hyundai-accent.png",
+  "Suzuki Dezire": "/images/cars/cutouts/suzuki-dzire.png",
+  "Suzuki Dzire": "/images/cars/cutouts/suzuki-dzire.png",
+  "Kia Rio Sedan": "/images/cars/cutouts/kia-rio-sedan.png",
+  "Perodua Bezza": "/images/cars/cutouts/perodua-bezza.png",
 
   // 7-Seater
-  "Suzuki Ertiga": "/images/cars/suzuki-ertiga.jpg",
-  "Toyota Avanza": "/images/cars/toyota-avanza.jpg",
-  "Toyota Rush": "/images/cars/toyota-rush.jpg",
-  "Perodua Alza": "/images/cars/perodua-alza.jpg",
-  "Nissan NV200": "/images/cars/toyota-avanza.jpg",
+  "Suzuki Ertiga": "/images/cars/cutouts/suzuki-ertiga.png",
+  "Toyota Avanza": "/images/cars/cutouts/toyota-avanza.png",
+  "Toyota Rush": "/images/cars/cutouts/toyota-rush.png",
+  "Perodua Alza": "/images/cars/cutouts/perodua-alza.png",
+  "Nissan NV200": "/images/cars/cutouts/toyota-avanza.png",
 
   // SUV
-  "Nissan Magnite": "/images/cars/nissan-magnite.jpg",
+  "Nissan Magnite": "/images/cars/cutouts/nissan-magnite.png",
   "Suzuki Fronx": "/images/cars/suzuki-fronx.png",
-  "Suzuki Grand Vitara": "/images/cars/suzuki-grand-vitara.jpg",
-  "Renault Duster": "/images/cars/hyundai-creta.jpg",
-  "Hyundai Creta": "/images/cars/hyundai-creta.jpg",
+  "Suzuki Grand Vitara": "/images/cars/cutouts/suzuki-grand-vitara.png",
+  "Renault Duster": "/images/cars/cutouts/hyundai-creta.png",
+  "Hyundai Creta": "/images/cars/cutouts/hyundai-creta.png",
 
   // Luxury 7-Seater
-  "Toyota Esquire": "/images/cars/toyota-esquire.jpg",
-  "Toyota Noah": "/images/cars/toyota-noah.jpg",
-  "Toyota Voxy": "/images/cars/toyota-voxy.jpg",
+  "Toyota Esquire": "/images/cars/cutouts/toyota-esquire.png",
+  "Toyota Noah": "/images/cars/cutouts/toyota-noah.png",
+  "Toyota Voxy": "/images/cars/cutouts/toyota-voxy.png",
 
   // Sedan Luxury
-  "BMW Serie 3": "/images/cars/bmw-serie-3.jpg",
-  "BMW Serie 5": "/images/cars/bmw-serie-3.jpg",
-  "Mercedes CLA 180": "/images/cars/mercedes-cla-180.jpg",
-  "Mercedes CLA 200": "/images/cars/mercedes-cla-200.jpg",
+  "BMW Serie 3": "/images/cars/cutouts/bmw-serie-3.png",
+  "BMW Serie 5": "/images/cars/cutouts/bmw-serie-3.png",
+  "Mercedes CLA 180": "/images/cars/cutouts/mercedes-cla-180.png",
+  "Mercedes CLA 200": "/images/cars/cutouts/mercedes-cla-200.png",
 
   // 4x4
-  "Toyota Hilux": "/images/cars/toyota-hilux.jpg",
-  "Nissan Navara": "/images/cars/nissan-navara.jpg",
-  "Mitsubishi Triton": "/images/cars/mitsubishi-triton.jpg",
+  "Toyota Hilux": "/images/cars/cutouts/toyota-hilux.png",
+  "Nissan Navara": "/images/cars/cutouts/nissan-navara.png",
+  "Mitsubishi Triton": "/images/cars/cutouts/mitsubishi-triton.png",
 
   // SUV Luxury
-  "BMW X5": "/images/cars/bmw-serie-3.jpg",
+  "BMW X5": "/images/cars/cutouts/bmw-serie-3.png",
 };
 
 export function getCarImage(carName, categoryId) {
   if (carImages[carName]) return carImages[carName];
   const cat = categories.find((c) => c.id === categoryId);
   if (cat && cat.image) return cat.image;
-  return "/images/cars/nissan-micra.jpg";
+  return "/images/cars/cutouts/nissan-micra.png";
 }
 
 // Every rental is automatic transmission (per the reference fleet listing).

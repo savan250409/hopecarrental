@@ -11,10 +11,11 @@ export default function Footer() {
         {/* Brand */}
         <div className="lg:col-span-1">
           <div className="flex items-center gap-2.5">
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gold-400 text-navy-950">
-              <Icon name="fleet" className="h-6 w-6" />
-            </span>
-            <span className="font-display text-lg font-600 text-navy-900 dark:text-white">Hope Car Rental</span>
+            <img
+              src="/images/brand/hope-car-rental-logo.png"
+              alt="Hope Car Rental Mauritius"
+              className="h-11 w-auto object-contain mix-blend-multiply dark:mix-blend-normal"
+            />
           </div>
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-navy-500 dark:text-white/60">
             Reliable rides and remarkable experiences across Mauritius. Your trusted

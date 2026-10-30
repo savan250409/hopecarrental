@@ -36,11 +36,13 @@ export default function Faq() {
                         {item.q}
                       </span>
                       <span
-                        className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-navy-50 text-navy-700 transition-transform duration-300 dark:bg-white/10 dark:text-navy-200 ${
-                          isOpen ? "rotate-45 bg-gold-400 text-navy-950 dark:bg-gold-400 dark:text-navy-950" : ""
+                        className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-colors duration-300 ${
+                          isOpen
+                            ? "bg-gold-400 text-navy-950"
+                            : "bg-navy-50 text-navy-700 dark:bg-white/10 dark:text-navy-200"
                         }`}
                       >
-                        <Icon name="plus" className="h-4 w-4" />
+                        <Icon name={isOpen ? "minus" : "plus"} className="h-4 w-4" />
                       </span>
                     </button>
                   </h3>

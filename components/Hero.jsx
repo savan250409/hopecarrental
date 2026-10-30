@@ -99,7 +99,7 @@ export default function Hero() {
             <div className="relative rounded-[2.5rem] border border-navy-200/70 bg-white/60 p-6 backdrop-blur-sm dark:border-white/10 dark:bg-white/5">
               <div className={`relative flex h-56 sm:h-64 w-full items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-b from-white/95 via-navy-50/50 to-navy-100/30 p-5 shadow-inner dark:from-white/10 dark:via-white/5 dark:to-transparent ${reduce ? "" : "animate-float"}`}>
                 <img
-                  src="/images/cars/nissan-micra.jpg"
+                  src="/images/cars/cutouts/nissan-micra.png"
                   alt="Nissan Micra - Hope Car Rental Mauritius"
                   className="max-h-52 w-auto max-w-full object-contain drop-shadow-xl transition-transform duration-500 hover:scale-105"
                   loading="eager"

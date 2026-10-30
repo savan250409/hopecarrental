@@ -182,7 +182,7 @@ export default function FleetBrowser() {
                         {/* Real Car Image from hopecarrental.mu */}
                         <div className="relative z-0 flex h-36 w-full items-center justify-center px-4 transition-transform duration-500 ease-out group-hover:scale-105 group-hover:-translate-y-0.5">
                           <img
-                            src={carImages[car] || active.image || "/images/cars/nissan-micra.jpg"}
+                            src={carImages[car] || active.image || "/images/cars/cutouts/nissan-micra.png"}
                             alt={`${car} rental in Mauritius - Hope Car Rental`}
                             className="max-h-32 w-auto max-w-[90%] object-contain drop-shadow-md rounded-md"
                             loading="lazy"

@@ -5,6 +5,7 @@
   "description": "Hope Car Rental Mauritius — modern frontend-only website (Next.js + React).",
   "scripts": {
     "dev": "next dev",
+    "dev:network": "next dev -H 0.0.0.0",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"

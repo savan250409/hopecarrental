@@ -24,7 +24,7 @@ export default function Services() {
                 >
                   <div className="flex h-32 w-4/5 items-center justify-center transition-transform duration-500 group-hover:scale-105">
                     <img
-                      src={c.image || "/images/cars/nissan-micra.jpg"}
+                      src={c.image || "/images/cars/cutouts/nissan-micra.png"}
                       alt={`${c.name} category car - Hope Car Rental Mauritius`}
                       className="max-h-28 w-auto max-w-full object-contain drop-shadow-md rounded-md"
                       loading="lazy"

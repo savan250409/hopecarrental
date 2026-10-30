@@ -45,7 +45,7 @@ export const metadata = {
   },
   robots: { index: true, follow: true },
   icons: {
-    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
+    icon: [{ url: "/images/brand/hope-car-rental-logo.png", type: "image/png" }],
   },
 };
 

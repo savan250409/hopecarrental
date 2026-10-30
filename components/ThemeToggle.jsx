@@ -11,16 +11,25 @@ export default function ThemeToggle({ className = "" }) {
   const [dark, setDark] = useState(false);
 
   useEffect(() => {
-    setDark(document.documentElement.classList.contains("dark"));
+    const syncTheme = () => {
+      setDark(document.documentElement.classList.contains("dark"));
+    };
+
+    syncTheme();
     setMounted(true);
+
+    // Navbar renders desktop and mobile toggles together; keep both icons in sync.
+    window.addEventListener("hope-theme-change", syncTheme);
+    return () => window.removeEventListener("hope-theme-change", syncTheme);
   }, []);
 
   function toggle() {
-    const next = !dark;
+    const next = !document.documentElement.classList.contains("dark");
     setDark(next);
     const el = document.documentElement;
     el.classList.toggle("dark", next);
     el.style.colorScheme = next ? "dark" : "light";
+    window.dispatchEvent(new Event("hope-theme-change"));
     try {
       localStorage.setItem("theme", next ? "dark" : "light");
     } catch (e) {

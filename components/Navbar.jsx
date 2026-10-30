@@ -54,15 +54,11 @@ export default function Navbar() {
     >
       <nav className="container-px flex items-center justify-between" aria-label="Primary">
         <a href="#home" className="group flex items-center gap-2.5" aria-label={`${business.name} home`}>
-          <span className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-gold-400 text-navy-950 shadow-glow">
-            <Icon name="fleet" className="h-6 w-6" />
-          </span>
-          <span className="flex flex-col leading-none">
-            <span className="font-display text-lg font-600 text-navy-900 dark:text-white">Hope Car Rental</span>
-            <span className="text-[0.62rem] uppercase tracking-[0.25em] text-gold-600 dark:text-gold-300">
-              Mauritius
-            </span>
-          </span>
+          <img
+            src="/images/brand/hope-car-rental-logo.png"
+            alt="Hope Car Rental Mauritius"
+            className="h-12 w-auto object-contain mix-blend-multiply dark:mix-blend-normal"
+          />
         </a>
 
         {/* Desktop links */}
