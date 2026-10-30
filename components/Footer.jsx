@@ -1,3 +1,5 @@
+"use client";
+
 import { business, categories, nav } from "@/data/site";
 import Icon from "./Icon";
 import TropicalWaves from "./TropicalWaves";
@@ -117,7 +119,7 @@ export default function Footer() {
           </p>
           <div className="flex gap-5">
             <a href="#legal" className="hover:text-navy-900 dark:hover:text-white">Legal Notice</a>
-            <a href="#privacy" className="hover:text-navy-900 dark:hover:text-white">Privacy</a>
+            <button type="button" onClick={() => window.dispatchEvent(new Event("privacy:open"))} className="hover:text-navy-900 dark:hover:text-white">Privacy</button>
           </div>
         </div>
       </div>

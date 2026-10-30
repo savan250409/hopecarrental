@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { categories, carImages, fleetFacts } from "@/data/site";
 import Icon from "./Icon";
@@ -10,6 +10,19 @@ export default function FleetBrowser() {
   const [activeId, setActiveId] = useState(categories[0].id);
   const reduce = useReducedMotion();
   const active = categories.find((c) => c.id === activeId) || categories[0];
+
+  useEffect(() => {
+    const selectCategoryFromHash = () => {
+      const match = window.location.hash.match(/^#fleet-category-(.+)$/);
+      if (match && categories.some((category) => category.id === match[1])) {
+        setActiveId(match[1]);
+      }
+    };
+
+    selectCategoryFromHash();
+    window.addEventListener("hashchange", selectCategoryFromHash);
+    return () => window.removeEventListener("hashchange", selectCategoryFromHash);
+  }, []);
 
   return (
     <section
@@ -48,7 +61,7 @@ export default function FleetBrowser() {
                   role="tab"
                   aria-selected={selected}
                   aria-controls={`panel-${c.id}`}
-                  id={`tab-${c.id}`}
+                  id={`fleet-category-${c.id}`}
                   onClick={() => setActiveId(c.id)}
                   className={`relative rounded-xl px-4 py-2 text-xs font-semibold transition-all duration-200 sm:rounded-full sm:text-sm ${
                     selected
@@ -74,7 +87,7 @@ export default function FleetBrowser() {
         <div
           role="tabpanel"
           id={`panel-${active.id}`}
-          aria-labelledby={`tab-${active.id}`}
+          aria-labelledby={`fleet-category-${active.id}`}
           className="mt-10"
         >
           <AnimatePresence mode="wait">
@@ -186,6 +199,7 @@ export default function FleetBrowser() {
                             alt={`${car} rental in Mauritius - Hope Car Rental`}
                             className="max-h-32 w-auto max-w-[90%] object-contain drop-shadow-md rounded-md"
                             loading="lazy"
+                            decoding="async"
                           />
                         </div>
                       </div>
@@ -227,7 +241,14 @@ export default function FleetBrowser() {
                         {/* Lower: Dedicated Booking Button */}
                         <div className="pt-2">
                           <a
-                            href={`#booking?car=${encodeURIComponent(car)}`}
+                            href="#booking"
+                            onClick={() => {
+                              window.dispatchEvent(
+                                new CustomEvent("booking:prefill", {
+                                  detail: { category: active.id, car },
+                                })
+                              );
+                            }}
                             className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-navy-950 px-4 py-3 text-xs font-semibold text-white shadow-sm transition-all duration-300 hover:bg-gold-500 hover:text-navy-950 hover:shadow-md focus-visible:ring-2 focus-visible:ring-gold-400 active:scale-[0.98] dark:bg-gold-400 dark:text-navy-950 dark:hover:bg-gold-300 dark:shadow-glow sm:text-sm"
                             data-car={car}
                             data-category={active.name}

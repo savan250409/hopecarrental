@@ -136,7 +136,12 @@ export default function Contact() {
                     checked={form.privacy}
                     onChange={(e) => setForm({ ...form, privacy: e.target.checked })}
                   />
-                  <span>I have read and understand the privacy policy.</span>
+                  <span>
+                    I have read and understand the{" "}
+                    <button type="button" onClick={() => window.dispatchEvent(new Event("privacy:open"))} className="font-semibold underline underline-offset-2">
+                      privacy policy
+                    </button>.
+                  </span>
                 </label>
 
                 {status === "error" && (

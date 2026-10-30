@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { business, categories } from "@/data/site";
 import Icon from "./Icon";
@@ -11,6 +11,7 @@ const emptyForm = {
   email: "",
   phone: "",
   category: "",
+  car: "",
   pickup: "",
   dropoff: "",
   location: "",
@@ -22,6 +23,19 @@ export default function Booking() {
   const [form, setForm] = useState(emptyForm);
   const [errors, setErrors] = useState({});
   const [sent, setSent] = useState(false);
+
+  useEffect(() => {
+    const prefillBooking = (event) => {
+      const { category, car } = event.detail || {};
+      if (!categories.some((item) => item.id === category)) return;
+      setForm((current) => ({ ...current, category, car: car || "" }));
+      setErrors({});
+      setSent(false);
+    };
+
+    window.addEventListener("booking:prefill", prefillBooking);
+    return () => window.removeEventListener("booking:prefill", prefillBooking);
+  }, []);
 
   const today = new Date().toISOString().split("T")[0];
 
@@ -44,27 +58,10 @@ export default function Booking() {
     return Object.keys(e).length === 0;
   }
 
-  function whatsappText() {
-    const cat = categories.find((c) => c.id === form.category);
-    return encodeURIComponent(
-      `Hello Hope Car Rental, I'd like to enquire about a booking.%0A` +
-        `Name: ${form.name}%0A` +
-        `Category: ${cat ? cat.label : "-"}%0A` +
-        `Pick-up: ${form.pickup || "-"}%0A` +
-        `Drop-off: ${form.dropoff || "-"}%0A` +
-        `Location: ${form.location || "-"}%0A` +
-        `Phone: ${form.phone}%0A` +
-        `Email: ${form.email}%0A` +
-        `Message: ${form.message || "-"}`
-    ).replace(/%2520/g, "%20");
-  }
-
   function handleSubmit(ev) {
     ev.preventDefault();
     if (!validate()) return;
-    // Frontend-only: no real booking is processed. We capture the enquiry and
-    // offer direct channels (WhatsApp / email) so the request actually reaches
-    // the team. Nothing is sent to a server.
+    // Demo mode: validate the form and show confirmation only.
     setSent(true);
   }
 
@@ -134,32 +131,18 @@ export default function Booking() {
                   key="success"
                   initial={{ opacity: 0, scale: 0.96 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="flex flex-col items-center py-8 text-center"
+                  aria-live="polite"
+                  className="flex flex-col items-center rounded-2xl border border-lagoon-200 bg-lagoon-50/60 px-5 py-8 text-center dark:border-lagoon-400/20 dark:bg-lagoon-400/5 sm:px-7"
                 >
                   <span className="flex h-16 w-16 items-center justify-center rounded-full bg-lagoon-100 text-lagoon-700">
                     <Icon name="check" className="h-9 w-9" />
                   </span>
                   <h3 className="mt-5 font-display text-2xl font-600 text-navy-900 dark:text-white">
-                    Request ready to send
+                    Request completed successfully
                   </h3>
                   <p className="mt-2 max-w-sm text-sm text-navy-600 dark:text-navy-300">
-                    Thanks, {form.name.split(" ")[0] || "there"}! This is an enquiry, not a
-                    confirmed booking yet. Send it to our team through one of the channels
-                    below and we&apos;ll confirm availability and pricing.
+                    Thanks, {form.name.split(" ")[0] || "there"}. Your form was validated successfully. This demo currently shows a confirmation only; it does not send or store your enquiry.
                   </p>
-                  <div className="mt-6 flex w-full flex-col gap-3 sm:flex-row sm:justify-center">
-                    <a
-                      href={`${business.whatsappHref}?text=${whatsappText()}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn-primary"
-                    >
-                      <Icon name="whatsapp" className="h-4 w-4" /> Send via WhatsApp
-                    </a>
-                    <a href={business.emailHref} className="btn-dark">
-                      <Icon name="mail" className="h-4 w-4" /> Email us
-                    </a>
-                  </div>
                   <button
                     type="button"
                     onClick={() => {
@@ -213,21 +196,48 @@ export default function Booking() {
                       />
                     </Field>
                     <Field label="Vehicle category" error={errors.category} htmlFor="bk-cat">
-                      <select
-                        id="bk-cat"
-                        className={field}
-                        value={form.category}
-                        onChange={(e) => update("category", e.target.value)}
-                      >
-                        <option value="">Select a category</option>
-                        {categories.map((c) => (
-                          <option key={c.id} value={c.id}>
-                            {c.name} — from €{c.from}/day
-                          </option>
-                        ))}
-                      </select>
+                      <div className="relative">
+                        <select
+                          id="bk-cat"
+                          className={`${field} appearance-none pr-12`}
+                          value={form.category}
+                          onChange={(e) => {
+                            update("category", e.target.value);
+                            update("car", "");
+                          }}
+                        >
+                          <option value="">Select a category</option>
+                          {categories.map((c) => (
+                            <option key={c.id} value={c.id}>
+                              {c.name} — from €{c.from}/day
+                            </option>
+                          ))}
+                        </select>
+                        <Icon name="chevronDown" className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-navy-500 dark:text-navy-300" />
+                      </div>
                     </Field>
                   </div>
+
+                  <Field label="Vehicle model (optional)" htmlFor="bk-car">
+                    <div className="relative">
+                      <select
+                        id="bk-car"
+                        className={`${field} appearance-none pr-12`}
+                        value={form.car}
+                        disabled={!form.category}
+                        onChange={(e) => update("car", e.target.value)}
+                      >
+                        <option value="">Any available model</option>
+                        {(categories.find((category) => category.id === form.category)?.cars || []).map((car) => (
+                          <option key={car} value={car}>{car}</option>
+                        ))}
+                      </select>
+                      <Icon name="chevronDown" className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-navy-500 dark:text-navy-300" />
+                    </div>
+                    <p className="mt-1.5 text-xs text-navy-500 dark:text-navy-400">
+                      All vehicles have automatic transmission.
+                    </p>
+                  </Field>
 
                   <div className="grid gap-4 sm:grid-cols-2">
                     <Field label="Pick-up date" error={errors.pickup} htmlFor="bk-pickup">
@@ -283,9 +293,9 @@ export default function Booking() {
                       />
                       <span>
                         I have read and understand the{" "}
-                        <a href="#privacy" className="font-semibold text-navy-900 underline underline-offset-2 dark:text-white">
+                        <button type="button" onClick={() => window.dispatchEvent(new Event("privacy:open"))} className="font-semibold text-navy-900 underline underline-offset-2 dark:text-white">
                           privacy policy
-                        </a>
+                        </button>
                         .
                       </span>
                     </label>

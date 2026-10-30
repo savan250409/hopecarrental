@@ -104,6 +104,13 @@ const paths = {
     </>
   ),
   minus: <path d="M5 12h14" />,
+  chevronDown: <path d="m6 9 6 6 6-6" />,
+  play: <path d="m8 5 11 7-11 7z" />,
+  pause: (
+    <>
+      <path d="M8 5h3v14H8zM15 5h3v14h-3z" />
+    </>
+  ),
   clock: (
     <>
       <circle cx="12" cy="12" r="9" />

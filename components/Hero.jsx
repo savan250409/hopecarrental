@@ -103,6 +103,7 @@ export default function Hero() {
                   alt="Nissan Micra - Hope Car Rental Mauritius"
                   className="max-h-52 w-auto max-w-full object-contain drop-shadow-xl transition-transform duration-500 hover:scale-105"
                   loading="eager"
+                  decoding="async"
                 />
               </div>
               <div className="mt-4 flex items-center justify-between rounded-2xl bg-navy-50 px-5 py-4 dark:bg-navy-950/60">

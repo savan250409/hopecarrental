@@ -28,6 +28,7 @@ export default function Services() {
                       alt={`${c.name} category car - Hope Car Rental Mauritius`}
                       className="max-h-28 w-auto max-w-full object-contain drop-shadow-md rounded-md"
                       loading="lazy"
+                      decoding="async"
                     />
                   </div>
                   <span className="absolute right-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-navy-800 shadow-sm dark:bg-navy-950/80 dark:text-white">
@@ -65,7 +66,7 @@ export default function Services() {
                   </ul>
 
                   <a
-                    href="#fleet"
+                    href={`#fleet-category-${c.id}`}
                     className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-navy-800 transition-colors hover:text-gold-600 dark:text-navy-100 dark:hover:text-gold-300"
                   >
                     View {c.name} fleet
